@@ -20,39 +20,41 @@ class HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: tabs[currentTabIndex],
-      extendBody: true,
-      bottomNavigationBar: Container(
-        margin: const EdgeInsets.all(13.0),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12.0),
-          color: Theme.of(context).backgroundColor,
-        ),
-        child: BottomNavigationBar(
-          currentIndex: currentTabIndex,
-          items: const [
-            BottomNavigationBarItem(
-              label: "",
-              icon: Icon(
-                Icons.home_outlined,
+    return SafeArea(
+      child: Scaffold(
+        body: tabs[currentTabIndex],
+        extendBody: true,
+        bottomNavigationBar: Container(
+          margin: const EdgeInsets.all(13.0),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12.0),
+            color: Theme.of(context).backgroundColor,
+          ),
+          child: BottomNavigationBar(
+            currentIndex: currentTabIndex,
+            items: const [
+              BottomNavigationBarItem(
+                label: "",
+                icon: Icon(
+                  Icons.home_outlined,
+                ),
               ),
-            ),
-            BottomNavigationBarItem(
-              label: "",
-              icon: Icon(
-                Icons.settings,
+              BottomNavigationBarItem(
+                label: "",
+                icon: Icon(
+                  Icons.settings,
+                ),
               ),
-            ),
-            BottomNavigationBarItem(
-              label: "",
-              icon: Icon(
-                Icons.account_box_outlined,
+              BottomNavigationBarItem(
+                label: "",
+                icon: Icon(
+                  Icons.account_box_outlined,
+                ),
               ),
+            ],
+            onTap: (index) => setState(
+              () => currentTabIndex = index,
             ),
-          ],
-          onTap: (index) => setState(
-            () => currentTabIndex = index,
           ),
         ),
       ),
