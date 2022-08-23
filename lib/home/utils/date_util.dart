@@ -30,7 +30,7 @@ Map<String, String> calculateNowTimes() {
           .replaceAll("[", '')
           .replaceAll("]", '');
   return {
-    'solar': "$solarDateTime $time",
-    'ad': mainDateTime.toString(),
+    'shamsi': "$solarDateTime $time",
+    'miladi': mainDateTime.toString(),
   };
 }
