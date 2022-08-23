@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:quiz/home/constants/theme_form.dart';
+import 'package:quiz/home/models/document_model.dart';
 import 'package:quiz/home/services/document_service.dart';
 import 'package:quiz/home/services/permission_service.dart';
-import 'package:quiz/home/models/document_model.dart';
+import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 class FormScreen extends StatefulWidget {
   const FormScreen({
@@ -22,11 +23,16 @@ class FormScreen extends StatefulWidget {
 
 class FormState extends State<FormScreen> {
   late DocumentModel currentDocument;
+  late TextEditingController dateFieldController;
+  late TextEditingController limitedNumFieldController;
+  late bool inSaveProgress = false;
 
   @override
   void initState() {
     super.initState();
     currentDocument = widget.documentService.currentDocumentModel;
+    dateFieldController = TextEditingController();
+    limitedNumFieldController = TextEditingController();
   }
 
   void onFilePick() async {
@@ -39,17 +45,41 @@ class FormState extends State<FormScreen> {
     }
   }
 
+  void onFileLoad() async {}
+
   void onFileSave() async {
-    debugPrint(currentDocument.fullname);
-    debugPrint(currentDocument.birthday);
-    debugPrint(currentDocument.filePath);
-    debugPrint(currentDocument.limitedNumber.toString());
+    if (inSaveProgress) return;
+    setState(() {
+      inSaveProgress = true;
+    });
+    String result = await widget.documentService.create();
+    //! Show This Result Message to User With Notfication
+    Future.delayed(const Duration(seconds: 1), () {
+      setState(() {
+        inSaveProgress = false;
+      });
+    });
   }
 
-  void onFileLoad() async {}
+  void onLimitedNumberChanged(String value) {
+    if (value.isNotEmpty) {
+      int result = int.parse(value);
+      if (result > 10) {
+        result = 10;
+      } else if (result < 1) {
+        result = 1;
+      }
+      currentDocument.limitedNumber = result;
+      limitedNumFieldController.text = result.toString();
+      limitedNumFieldController.selection = TextSelection.collapsed(
+        offset: limitedNumFieldController.text.length,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    Jalali tempPickedDate = Jalali.now();
     return SingleChildScrollView(
       child: Container(
         margin: const EdgeInsets.all(18),
@@ -78,27 +108,39 @@ class FormState extends State<FormScreen> {
               height: 12.5,
             ),
             TextFormField(
+              controller: dateFieldController,
               textAlign: TextAlign.left,
               textDirection: TextDirection.ltr,
               keyboardType: TextInputType.datetime,
               decoration: kTextFieldDateDecoration,
               style: kThemeFieldInputStyle,
-              onChanged: (value) => currentDocument.birthday = value,
+              onTap: () async {
+                var picked = await showPersianDatePicker(
+                  context: context,
+                  initialDate: tempPickedDate,
+                  firstDate: Jalali(1300, 8),
+                  lastDate: Jalali(1500, 9),
+                );
+                if (picked != null) {
+                  var formattedDate = picked.formatCompactDate();
+                  tempPickedDate = picked;
+                  currentDocument.birthday = formattedDate;
+                  dateFieldController.text = formattedDate;
+                }
+              },
+              readOnly: true,
             ),
             const SizedBox(
               height: 12.5,
             ),
             TextFormField(
+              controller: limitedNumFieldController,
               textAlign: TextAlign.left,
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               decoration: kTextFieldNumberDecoration,
               style: kThemeFieldInputStyle,
-              onChanged: (value) {
-                if (value.isNotEmpty) {
-                  currentDocument.limitedNumber = int.parse(value);
-                }
-              },
+              onChanged: onLimitedNumberChanged,
             ),
             const SizedBox(
               height: 12.5,
@@ -122,17 +164,21 @@ class FormState extends State<FormScreen> {
             ),
             // * Save File button * //
             ElevatedButton(
-              style: kButtonGreenStyle,
+              style: (!inSaveProgress ? kButtonGreenStyle : kButtonYelloStyle),
               onPressed: () async => onFileSave(),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("ذخیره"),
-                  SizedBox(
+                children: [
+                  Text((!inSaveProgress
+                      ? "ذخیره"
+                      : "در حال اتصال برای دریافت موقعیت مکانی ...")),
+                  const SizedBox(
                     width: 8,
                   ),
                   Icon(
-                    Icons.save_as_outlined,
+                    (!inSaveProgress
+                        ? Icons.save_as_outlined
+                        : Icons.network_wifi),
                   )
                 ],
               ),

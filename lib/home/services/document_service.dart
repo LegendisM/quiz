@@ -1,8 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:quiz/home/models/document_model.dart';
 import 'package:quiz/home/services/storage_service.dart';
 import 'package:quiz/home/services/location_service.dart';
-// import 'package:quiz/home/utils/date_converter.dart';
-// import 'package:quiz/home/utils/multiplication.dart';
 
 class DocumentService {
   late DocumentModel currentDocumentModel;
@@ -13,11 +12,21 @@ class DocumentService {
     currentDocumentModel = DocumentModel();
   }
 
-  void create() {
-    // check Has Permission To Get Directory Path => if not => alert -> goto settings for get this
+  Future<String> create() async {
+    List<String> locationResult = await locationService.getLocation();
+    if (locationResult.length == 2) {
+      currentDocumentModel.longitude = locationResult[0];
+      currentDocumentModel.latitude = locationResult[1];
+    } else {
+      return locationResult[0];
+    }
+    String fileContent = currentDocumentModel.getExport().toString();
+    debugPrint(fileContent);
+    // call storage to create file with this content
+    return "عمیلات با موفقیت انجام شد";
   }
 
-  void load() {
+  void load() async {
     // check Has Permission To Get Directory Path => if not => alert -> goto settings for get this
   }
 }

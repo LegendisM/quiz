@@ -1,4 +1,6 @@
 import 'package:quiz/home/config/config.dart' as config show masters;
+import 'package:quiz/home/utils/multiplication.dart';
+// import 'package:quiz/home/utils/date_converter.dart';
 
 class DocumentModel {
   DocumentModel({
@@ -13,13 +15,34 @@ class DocumentModel {
   late String? filePath = "";
   late int? limitedNumber = 1;
 
-  late Object masters = config.masters;
-  late int age;
+  late String longitude;
+  late String latitude;
 
-  DateTime solarNowDateTime = DateTime.now();
-  DateTime adNowDateTime = DateTime.now();
+  int calculateAge() {
+    //! soon
+    return 1;
+  }
 
-  String getDocumentAsString() {
-    return "test\nhhello";
+  Map<String, String> calculateTimes() {
+    //! soon
+    return {
+      'solar': "solarNowDateTime",
+      'ad': "adNowDateTime",
+    };
+  }
+
+  Map getExport() {
+    return {
+      'fullname': fullname,
+      'age': calculateAge(),
+      'time': calculateTimes(),
+      'location': {
+        'longitude': longitude,
+        'latitude': latitude,
+      },
+      'masters': config.masters,
+      //! soon
+      'multiplication': calculateMultiplication(limitedNumber!),
+    };
   }
 }

@@ -16,8 +16,4 @@ class PermissionService {
       }
     }
   }
-
-  bool onRequestGpsPermission() {
-    return true;
-  }
 }

@@ -38,6 +38,7 @@ dependencies:
   permission_handler: ^10.0.0
   geolocator: ^9.0.1
   file_picker: ^5.0.1
+  persian_datetime_picker: ^2.5.0
 
 dev_dependencies:
   flutter_test:

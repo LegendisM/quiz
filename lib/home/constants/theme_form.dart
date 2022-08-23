@@ -27,13 +27,18 @@ const InputDecoration kTextFieldNumberDecoration = InputDecoration(
 
 const InputDecoration kTextFieldDateDecoration = InputDecoration(
   label: Text("تاریخ تولد"),
-  hintText: "مثال : 1400/1/1",
   hintStyle: kThemeFieldLabelColor,
 );
 
 //* Button Decorations
 ButtonStyle kButtonGreenStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
+);
+
+ButtonStyle kButtonYelloStyle = ButtonStyle(
+  backgroundColor: MaterialStateProperty.all<Color>(
+    const Color.fromARGB(225, 209, 209, 16),
+  ),
 );
 
 ButtonStyle kButtonOrangeStyle = ButtonStyle(
