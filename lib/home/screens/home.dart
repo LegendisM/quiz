@@ -22,8 +22,8 @@ class HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: tabs[currentTabIndex],
         extendBody: true,
+        body: tabs[currentTabIndex],
         bottomNavigationBar: Container(
           margin: const EdgeInsets.all(13.0),
           decoration: BoxDecoration(

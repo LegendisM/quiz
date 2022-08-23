@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:quiz/home/constants/theme.dart' show kThemeSecondaryColor;
 import 'package:quiz/home/constants/theme_form.dart';
 
 class FormScreen extends StatefulWidget {
@@ -17,20 +16,11 @@ class FormState extends State<FormScreen> {
       child: Container(
         margin: const EdgeInsets.all(18),
         padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: kThemeSecondaryColor,
-          borderRadius: BorderRadius.circular(6),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black26,
-              blurRadius: 3,
-              offset: Offset(0, 0),
-            ),
-          ],
-        ),
+        decoration: kThemeOfMainContainerDecoration,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // * Head Of Form * //
             const Text(
               "فرم مدیریت کاربر",
               textAlign: TextAlign.center,
@@ -39,11 +29,10 @@ class FormState extends State<FormScreen> {
             const Divider(
               height: 30,
             ),
+            // * Input Fields * //
             TextFormField(
               textAlign: TextAlign.right,
-              decoration: const InputDecoration(
-                label: Text("نام و نام خانوادگی"),
-              ),
+              decoration: kTextFieldNameDecoration,
               style: kThemeFieldInputStyle,
             ),
             const SizedBox(
@@ -53,11 +42,7 @@ class FormState extends State<FormScreen> {
               textAlign: TextAlign.left,
               textDirection: TextDirection.ltr,
               keyboardType: TextInputType.datetime,
-              decoration: const InputDecoration(
-                label: Text("تاریخ تولد"),
-                hintText: "مثال : 1400/1/1",
-                hintStyle: kThemeFieldLabelColor,
-              ),
+              decoration: kTextFieldDateDecoration,
               style: kThemeFieldInputStyle,
             ),
             const SizedBox(
@@ -67,14 +52,13 @@ class FormState extends State<FormScreen> {
               textAlign: TextAlign.left,
               keyboardType: TextInputType.number,
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-              decoration: const InputDecoration(
-                label: Text("عدد دلخواه (1 تا 10)"),
-              ),
+              decoration: kTextFieldNumberDecoration,
               style: kThemeFieldInputStyle,
             ),
             const SizedBox(
               height: 12.5,
             ),
+            // * Selection Path button * //
             ElevatedButton(
               onPressed: () async {},
               child: Row(
@@ -91,10 +75,9 @@ class FormState extends State<FormScreen> {
             const SizedBox(
               height: 2.5,
             ),
+            // * Save File button * //
             ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
-              ),
+              style: kButtonGreenStyle,
               onPressed: () async {},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -112,11 +95,9 @@ class FormState extends State<FormScreen> {
             const Divider(
               height: 30,
             ),
+            // * Selection Other File by Path button * //
             ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.orange.shade800),
-              ),
+              style: kButtonOrangeStyle,
               onPressed: () async {},
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
