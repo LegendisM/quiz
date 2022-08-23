@@ -32,11 +32,10 @@ class NotificationService {
       importance: Importance.max,
       priority: Priority.high,
       ticker: 'ticker',
-      // enableVibration: true,
+      icon: 'app_icon',
       vibrationPattern: vibrationPattern,
-      colorized: true,
       color: kThemeEnableIconColor,
-      timeoutAfter: 5000,
+      timeoutAfter: 7500,
     );
     platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
