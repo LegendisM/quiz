@@ -32,7 +32,6 @@ class NotificationService {
       importance: Importance.max,
       priority: Priority.high,
       ticker: 'ticker',
-      icon: 'app_icon',
       vibrationPattern: vibrationPattern,
       color: kThemeEnableIconColor,
       timeoutAfter: 7500,

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:quiz/home/models/document_model.dart';
 import 'package:quiz/home/services/storage_service.dart';
 import 'package:quiz/home/services/location_service.dart';
@@ -23,13 +22,8 @@ class DocumentService {
     } else {
       return locationResult[0];
     }
-    String fileContent = currentDocumentModel.getExport().toString();
-    debugPrint(fileContent);
-    //! call storage to create file with this content
+    Map<String, dynamic> fileContent = currentDocumentModel.getExport();
+    await storageService.saveFile(currentDocumentModel.filePath!, fileContent);
     return "عمیلات با موفقیت انجام شد";
-  }
-
-  void load() async {
-    //! check Has Permission To Get Directory Path => if not => alert -> goto settings for get this
   }
 }

@@ -28,7 +28,7 @@ class DocumentModel {
     return true;
   }
 
-  Map getExport() {
+  Map<String, dynamic> getExport() {
     return {
       'fullname': fullname,
       'age': calculateAge(birthday!),
