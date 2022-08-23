@@ -17,11 +17,16 @@ class LocationService {
         }
       }
       //* Get Current GPS Position
-      Position position = await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.lowest,
-        forceAndroidLocationManager: true,
-      );
-      return [position.longitude.toString(), position.latitude.toString()];
+      try {
+        Position position = await Geolocator.getCurrentPosition(
+          desiredAccuracy: LocationAccuracy.lowest,
+          forceAndroidLocationManager: true,
+          timeLimit: const Duration(seconds: 20),
+        );
+        return [position.longitude.toString(), position.latitude.toString()];
+      } catch (e) {
+        return ["موقعیت یافت نشد ؛ تلاش دوباره . . ."];
+      }
     } else {
       return ["لطفا قابلیت موقعیت مکانی تلفن همراه خود را فعال کنید"];
     }

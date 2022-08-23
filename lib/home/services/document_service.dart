@@ -13,6 +13,9 @@ class DocumentService {
   }
 
   Future<String> create() async {
+    if (currentDocumentModel.validator() == false) {
+      return "لطفا فرم مورد نظر را تکمیل کنید.";
+    }
     List<String> locationResult = await locationService.getLocation();
     if (locationResult.length == 2) {
       currentDocumentModel.longitude = locationResult[0];
@@ -22,11 +25,11 @@ class DocumentService {
     }
     String fileContent = currentDocumentModel.getExport().toString();
     debugPrint(fileContent);
-    // call storage to create file with this content
+    //! call storage to create file with this content
     return "عمیلات با موفقیت انجام شد";
   }
 
   void load() async {
-    // check Has Permission To Get Directory Path => if not => alert -> goto settings for get this
+    //! check Has Permission To Get Directory Path => if not => alert -> goto settings for get this
   }
 }
