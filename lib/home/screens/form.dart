@@ -1,15 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+// import 'package:file_picker/file_picker.dart';
 import 'package:quiz/home/constants/theme_form.dart';
+import 'package:quiz/home/models/document_model.dart';
+import 'package:quiz/home/services/document_service.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({super.key});
+  const FormScreen({super.key, required this.documentService});
+
+  final DocumentService documentService;
 
   @override
   State<FormScreen> createState() => FormState();
 }
 
 class FormState extends State<FormScreen> {
+  late DocumentModel currentDocument;
+
+  @override
+  void initState() {
+    super.initState();
+    currentDocument = widget.documentService.currentDocumentModel;
+  }
+
+  void onFilePick() async {
+    // String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+
+    // if (selectedDirectory != null) {
+    //   currentDocument.filePath = selectedDirectory;
+    //   debugPrint(currentDocument.filePath);
+    //   debugPrint(widget.documentService.currentDocumentModel.filePath);
+    // }
+  }
+
+  void onFileSave() async {}
+  void onFileLoad() async {}
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -60,7 +86,7 @@ class FormState extends State<FormScreen> {
             ),
             // * Selection Path button * //
             ElevatedButton(
-              onPressed: () async {},
+              onPressed: () async => onFilePick(),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -78,7 +104,7 @@ class FormState extends State<FormScreen> {
             // * Save File button * //
             ElevatedButton(
               style: kButtonGreenStyle,
-              onPressed: () async {},
+              onPressed: () async => onFileSave(),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
@@ -98,7 +124,7 @@ class FormState extends State<FormScreen> {
             // * Selection Other File by Path button * //
             ElevatedButton(
               style: kButtonOrangeStyle,
-              onPressed: () async {},
+              onPressed: () async => onFileLoad(),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [

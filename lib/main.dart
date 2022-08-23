@@ -15,7 +15,7 @@ class Main extends StatelessWidget {
       title: "Quiz Application",
       initialRoute: '/',
       routes: {
-        '/': (BuildContext context) => const Directionality(
+        '/': (BuildContext context) => Directionality(
               textDirection: TextDirection.rtl,
               child: Home(),
             ),
