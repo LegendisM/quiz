@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-// import 'package:file_picker/file_picker.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:quiz/home/constants/theme_form.dart';
 import 'package:quiz/home/models/document_model.dart';
 import 'package:quiz/home/services/document_service.dart';
@@ -24,13 +24,13 @@ class FormState extends State<FormScreen> {
   }
 
   void onFilePick() async {
-    // String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
 
-    // if (selectedDirectory != null) {
-    //   currentDocument.filePath = selectedDirectory;
-    //   debugPrint(currentDocument.filePath);
-    //   debugPrint(widget.documentService.currentDocumentModel.filePath);
-    // }
+    if (selectedDirectory != null) {
+      currentDocument.filePath = selectedDirectory;
+      debugPrint(currentDocument.filePath);
+      debugPrint(widget.documentService.currentDocumentModel.filePath);
+    }
   }
 
   void onFileSave() async {}
@@ -48,7 +48,7 @@ class FormState extends State<FormScreen> {
           children: [
             // * Head Of Form * //
             const Text(
-              "فرم مدیریت کاربر",
+              "فرم ثبت اطلاعات کاربر",
               textAlign: TextAlign.center,
               style: kThemeFormTitleStyle,
             ),
