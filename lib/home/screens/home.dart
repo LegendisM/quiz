@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/home/services/document_service.dart';
+import 'package:quiz/home/services/permission_service.dart';
 import 'package:quiz/home/screens/form.dart';
 import 'package:quiz/home/screens/settings.dart';
 import 'package:quiz/home/screens/about.dart';
@@ -8,6 +9,7 @@ class Home extends StatefulWidget {
   Home({super.key});
 
   final DocumentService documentService = DocumentService();
+  final PermissionService permissionService = PermissionService();
 
   @override
   State<Home> createState() => HomeState();
@@ -16,7 +18,10 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   late int currentTabIndex = 0;
   late List<Widget> tabs = [
-    FormScreen(documentService: widget.documentService),
+    FormScreen(
+      documentService: widget.documentService,
+      permissionService: widget.permissionService,
+    ),
     const SettingScreen(),
     const AboutScreen()
   ];

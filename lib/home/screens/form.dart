@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:quiz/home/constants/theme_form.dart';
-import 'package:quiz/home/models/document_model.dart';
 import 'package:quiz/home/services/document_service.dart';
+import 'package:quiz/home/services/permission_service.dart';
+import 'package:quiz/home/models/document_model.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({super.key, required this.documentService});
+  const FormScreen({
+    super.key,
+    required this.documentService,
+    required this.permissionService,
+  });
 
   final DocumentService documentService;
+  final PermissionService permissionService;
 
   @override
   State<FormScreen> createState() => FormState();
@@ -24,16 +30,22 @@ class FormState extends State<FormScreen> {
   }
 
   void onFilePick() async {
-    String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
+    if (await widget.permissionService.onRequestFilePermission()) {
+      String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
 
-    if (selectedDirectory != null) {
-      currentDocument.filePath = selectedDirectory;
-      debugPrint(currentDocument.filePath);
-      debugPrint(widget.documentService.currentDocumentModel.filePath);
+      if (selectedDirectory != null) {
+        currentDocument.filePath = selectedDirectory;
+      }
     }
   }
 
-  void onFileSave() async {}
+  void onFileSave() async {
+    debugPrint(currentDocument.fullname);
+    debugPrint(currentDocument.birthday);
+    debugPrint(currentDocument.filePath);
+    debugPrint(currentDocument.limitedNumber.toString());
+  }
+
   void onFileLoad() async {}
 
   @override
@@ -60,6 +72,7 @@ class FormState extends State<FormScreen> {
               textAlign: TextAlign.right,
               decoration: kTextFieldNameDecoration,
               style: kThemeFieldInputStyle,
+              onChanged: (value) => currentDocument.fullname = value,
             ),
             const SizedBox(
               height: 12.5,
@@ -70,6 +83,7 @@ class FormState extends State<FormScreen> {
               keyboardType: TextInputType.datetime,
               decoration: kTextFieldDateDecoration,
               style: kThemeFieldInputStyle,
+              onChanged: (value) => currentDocument.birthday = value,
             ),
             const SizedBox(
               height: 12.5,
@@ -80,6 +94,11 @@ class FormState extends State<FormScreen> {
               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
               decoration: kTextFieldNumberDecoration,
               style: kThemeFieldInputStyle,
+              onChanged: (value) {
+                if (value.isNotEmpty) {
+                  currentDocument.limitedNumber = int.parse(value);
+                }
+              },
             ),
             const SizedBox(
               height: 12.5,
