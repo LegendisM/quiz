@@ -4,18 +4,20 @@ import 'package:file_picker/file_picker.dart';
 import 'package:quiz/home/constants/theme_form.dart';
 import 'package:quiz/home/models/document_model.dart';
 import 'package:quiz/home/services/document_service.dart';
+import 'package:quiz/home/services/notification_service.dart';
 import 'package:quiz/home/services/permission_service.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
 class FormScreen extends StatefulWidget {
-  const FormScreen({
-    super.key,
-    required this.documentService,
-    required this.permissionService,
-  });
+  const FormScreen(
+      {super.key,
+      required this.documentService,
+      required this.permissionService,
+      required this.notificationService});
 
   final DocumentService documentService;
   final PermissionService permissionService;
+  final NotificationService notificationService;
 
   @override
   State<FormScreen> createState() => FormState();
@@ -53,7 +55,7 @@ class FormState extends State<FormScreen> {
       inSaveProgress = true;
     });
     String result = await widget.documentService.create();
-    //! Show This Result Message to User With Notfication
+    widget.notificationService.showNotification("توجه", result);
     Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         inSaveProgress = false;

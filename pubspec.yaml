@@ -39,6 +39,7 @@ dependencies:
   geolocator: ^9.0.1
   file_picker: ^5.0.1
   persian_datetime_picker: ^2.5.0
+  flutter_local_notifications: ^9.8.0+1
 
 dev_dependencies:
   flutter_test:

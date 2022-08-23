@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/home/services/document_service.dart';
+import 'package:quiz/home/services/notification_service.dart';
 import 'package:quiz/home/services/permission_service.dart';
 import 'package:quiz/home/screens/form.dart';
 import 'package:quiz/home/screens/settings.dart';
@@ -10,6 +11,7 @@ class Home extends StatefulWidget {
 
   final DocumentService documentService = DocumentService();
   final PermissionService permissionService = PermissionService();
+  final NotificationService notificationService = NotificationService();
 
   @override
   State<Home> createState() => HomeState();
@@ -21,6 +23,7 @@ class HomeState extends State<Home> {
     FormScreen(
       documentService: widget.documentService,
       permissionService: widget.permissionService,
+      notificationService: widget.notificationService,
     ),
     const SettingScreen(),
     const AboutScreen()
