@@ -1,16 +1,16 @@
 const Object masters = [
   {
     "name": "حمیدرضا محمدی",
-    "national_code": "12345",
+    "national_code": "1080748644",
     "phone": "09016493605",
-    "province": "Isfahan",
-    "city": "Najafabad"
+    "province": "اصفهان",
+    "city": "نجف آباد"
   },
   {
     "name": "علی محمدی",
-    "national_code": "12345",
-    "phone": "09016493605",
-    "province": "Isfahan",
-    "city": "Najafabad"
+    "national_code": "1080741267",
+    "phone": "09015080448",
+    "province": "اصفهان",
+    "city": "نجف آباد"
   },
 ];
