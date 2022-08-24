@@ -22,7 +22,7 @@ class DocumentService {
     } else {
       return locationResult[0];
     }
-    Map<String, dynamic> fileContent = currentDocumentModel.getExport();
+    var fileContent = currentDocumentModel.getExport();
     await storageService.saveFile(currentDocumentModel.filePath!, fileContent);
     return "عمیلات با موفقیت انجام شد";
   }

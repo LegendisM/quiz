@@ -28,17 +28,17 @@ class DocumentModel {
     return true;
   }
 
-  Map<String, dynamic> getExport() {
+  getExport() {
     return {
       'fullname': fullname,
-      'age': calculateAge(birthday!),
+      'age': calculateAge(birthday!).toString(),
       'time': calculateNowTimes(),
       'location': {
-        'longitude': longitude,
-        'latitude': latitude,
+        'longitude': longitude.toString(),
+        'latitude': latitude.toString(),
       },
       'masters': config.masters,
-      'multiplication': calculateMultiplication(limitedNumber!),
+      'multiplication': calculateMultiplication(limitedNumber!)
     };
   }
 }

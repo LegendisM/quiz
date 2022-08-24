@@ -1,6 +1,6 @@
 import 'package:quiz/home/utils/date_converter.dart';
 
-int calculateAge(String targetDate) {
+String calculateAge(String targetDate) {
   //* Convert Solar To Ad
   List<int> formattedDate = (targetDate.split("/").map(
         (e) => int.parse(e),
@@ -17,7 +17,7 @@ int calculateAge(String targetDate) {
   );
   //* Calculate Age By Ad Date
   int result = DateTime.now().year - targetDateResult.year;
-  return result;
+  return result.toString();
 }
 
 Map<String, String> calculateNowTimes() {
