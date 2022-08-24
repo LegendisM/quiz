@@ -34,7 +34,7 @@ class NotificationService {
       ticker: 'ticker',
       vibrationPattern: vibrationPattern,
       color: kThemeEnableIconColor,
-      timeoutAfter: 7500,
+      timeoutAfter: 5000,
     );
     platformChannelSpecifics = NotificationDetails(
       android: androidPlatformChannelSpecifics,
