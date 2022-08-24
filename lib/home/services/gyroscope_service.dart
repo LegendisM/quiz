@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:sensors_plus/sensors_plus.dart';
 
 class GyroscopeService {
