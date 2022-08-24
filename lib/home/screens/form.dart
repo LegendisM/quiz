@@ -47,8 +47,6 @@ class FormState extends State<FormScreen> {
     }
   }
 
-  void onFileLoad() async {}
-
   void onFileSave() async {
     if (inSaveProgress) return;
     setState(() {
@@ -182,24 +180,6 @@ class FormState extends State<FormScreen> {
                         ? Icons.save_as_outlined
                         : Icons.network_wifi),
                   )
-                ],
-              ),
-            ),
-            const Divider(
-              height: 30,
-            ),
-            // * Selection Other File by Path button * //
-            ElevatedButton(
-              style: kButtonOrangeStyle,
-              onPressed: () async => onFileLoad(),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text("باز کردن فایل از قبل ایجاد شده"),
-                  SizedBox(
-                    width: 8,
-                  ),
-                  Icon(Icons.open_in_browser_outlined),
                 ],
               ),
             ),
