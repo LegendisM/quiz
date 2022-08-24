@@ -5,6 +5,7 @@ import 'package:quiz/home/models/document_model.dart';
 import 'package:quiz/home/services/document_service.dart';
 import 'package:quiz/home/services/notification_service.dart';
 import 'package:quiz/home/services/permission_service.dart';
+import 'package:quiz/home/widgets/form_data.dart';
 
 class FormLoadScreen extends StatefulWidget {
   const FormLoadScreen(
@@ -23,6 +24,7 @@ class FormLoadScreen extends StatefulWidget {
 
 class FormLoadState extends State<FormLoadScreen> {
   late DocumentModel currentDocument;
+  late bool doucmentReady = false;
 
   @override
   void initState() {
@@ -37,7 +39,10 @@ class FormLoadState extends State<FormLoadScreen> {
       if (selectedDirectory != null) {
         currentDocument.filePath = selectedDirectory;
         String result = await widget.documentService.load();
-        widget.notificationService.showNotification(" توجه !", result);
+        widget.notificationService.showNotification(" اطلاع رسانی", result);
+        setState(() {
+          doucmentReady = true;
+        });
       }
     }
   }
@@ -54,13 +59,18 @@ class FormLoadState extends State<FormLoadScreen> {
           children: [
             // * Head Of Form * //
             const Text(
-              "فرم بارگذاری اطلاعات کاربر",
+              "فرم مشاهده اطلاعات کاربر",
               textAlign: TextAlign.center,
               style: kThemeFormTitleStyle,
             ),
             const Divider(
               height: 30,
             ),
+            doucmentReady
+                ? FormData(
+                    document: currentDocument,
+                  )
+                : const SizedBox.shrink(),
             const SizedBox(
               height: 6.5,
             ),

@@ -23,6 +23,7 @@ String calculateAge(String targetDate) {
 Map<String, String> calculateNowTimes() {
   DateTime mainDateTime = DateTime.now();
   String time = mainDateTime.toString().split(" ")[1].split(".")[0];
+  String miladiDatetime = mainDateTime.toString().split(" ")[0];
   String solarDateTime =
       gregorianToJalali(mainDateTime.year, mainDateTime.month, mainDateTime.day)
           .toString()
@@ -31,6 +32,6 @@ Map<String, String> calculateNowTimes() {
           .replaceAll("]", '');
   return {
     'shamsi': "$solarDateTime $time",
-    'miladi': mainDateTime.toString(),
+    'miladi': "$miladiDatetime $time",
   };
 }

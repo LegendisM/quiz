@@ -57,7 +57,7 @@ class HomeState extends State<Home> {
               BottomNavigationBarItem(
                 label: "",
                 icon: Icon(
-                  Icons.fireplace,
+                  Icons.file_open_outlined,
                 ),
               ),
               BottomNavigationBarItem(

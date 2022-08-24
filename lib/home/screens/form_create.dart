@@ -90,7 +90,7 @@ class FormCreateState extends State<FormCreateScreen> {
           children: [
             // * Head Of Form * //
             const Text(
-              "فرم ثبت اطلاعات کاربر",
+              "فرم ایجاد اطلاعات کاربر",
               textAlign: TextAlign.center,
               style: kThemeFormTitleStyle,
             ),

@@ -29,7 +29,7 @@ class DocumentService {
     }
     var fileContent = currentDocumentModel.getExport();
     await storageService.saveFile(currentDocumentModel.filePath!, fileContent);
-    return "عمیلات با موفقیت انجام شد";
+    return "عملیات با موفقیت انجام شد";
   }
 
   Future<String> load() async {
@@ -37,7 +37,7 @@ class DocumentService {
       String selectedPath = secondaryDocumentModel.filePath!;
       var json = await storageService.loadFile(selectedPath);
       secondaryDocumentModel.fromJson(json);
-      return "عمیلات با موفقیت انجام شد";
+      return "عملیات با موفقیت انجام شد";
     } catch (e) {
       return "مشکلی پیش آمده است ، فایل یافت نشد . . .";
     }
