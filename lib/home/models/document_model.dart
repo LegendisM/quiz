@@ -29,6 +29,7 @@ class DocumentModel {
   /// validate this document fields with null state
   bool validator() {
     if (fullname == null ||
+        fullname?.length == 1 ||
         birthday == null ||
         filePath == null ||
         limitedNumber == null) {

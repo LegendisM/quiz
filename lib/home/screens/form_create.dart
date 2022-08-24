@@ -86,6 +86,8 @@ class FormCreateState extends State<FormCreateScreen> {
       limitedNumFieldController.selection = TextSelection.collapsed(
         offset: limitedNumFieldController.text.length,
       );
+    } else {
+      currentDocument.limitedNumber = null;
     }
   }
 
