@@ -1,3 +1,4 @@
+/// declare this variable for using in export of documents file
 const Object masters = [
   {
     "name": "حمیدرضا محمدی",

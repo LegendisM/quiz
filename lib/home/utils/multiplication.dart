@@ -1,3 +1,4 @@
+/// calculate multiplications From [1] to [maxNumber] as Map String
 Map calculateMultiplication(int maxNumber) {
   Map result = {};
 

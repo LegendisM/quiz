@@ -4,6 +4,8 @@ import 'package:quiz/home/services/notification_service.dart';
 class PermissionService {
   NotificationService notificationService = NotificationService();
 
+  /// request and get last status of  [Storage & extenalStorage]
+  /// => if this permission permanently denied automatically open Application settings
   Future<bool> onRequestFilePermission() async {
     var status = await Permission.manageExternalStorage.status;
     var statusStorage = await Permission.storage.status;
@@ -25,6 +27,8 @@ class PermissionService {
     }
   }
 
+  /// open Application settings for get Grand permission
+  /// => this action alerted by notification
   void openAppSettingsOption() {
     openAppSettings();
     notificationService.showNotification(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/home/constants/theme.dart' show kThemeSecondaryColor;
 
-//* Text Styles
+/// Text Styles
 const TextStyle kThemeFormTitleStyle = TextStyle(
   color: Colors.white,
   fontSize: 16,
@@ -16,7 +16,7 @@ const TextStyle kThemeFieldLabelColor = TextStyle(
   color: Colors.white,
 );
 
-// * Input Decorations
+/// Input Decorations
 const InputDecoration kTextFieldNameDecoration = InputDecoration(
   label: Text("نام و نام خانوادگی"),
 );
@@ -30,7 +30,7 @@ const InputDecoration kTextFieldDateDecoration = InputDecoration(
   hintStyle: kThemeFieldLabelColor,
 );
 
-//* Button Decorations
+/// Button Decorations
 ButtonStyle kButtonGreenStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.all<Color>(Colors.green),
 );
@@ -45,7 +45,7 @@ ButtonStyle kButtonOrangeStyle = ButtonStyle(
   backgroundColor: MaterialStateProperty.all<Color>(Colors.orange.shade800),
 );
 
-// * Box Decorations
+/// Box Decorations
 BoxDecoration kThemeOfMainContainerDecoration = BoxDecoration(
   color: kThemeSecondaryColor,
   borderRadius: BorderRadius.circular(6),

@@ -38,7 +38,7 @@ class AboutCard extends StatelessWidget {
               style: kThemeFieldLabelColor,
             ),
             leading: Image.asset(
-              "assets/images/$avatar.png",
+              "assets/images/avatars/$avatar.png",
             ),
           ),
           Align(

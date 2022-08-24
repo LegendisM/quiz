@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/home/constants/theme_form.dart' show kThemeFieldLabelColor;
 
+/// the basic [colors] of core theme
 const Color kThemePrimaryColor = Color.fromARGB(255, 36, 38, 59);
 const Color kThemeBackgroundColor = Color.fromARGB(255, 55, 56, 86);
 const Color kThemeBackgroundSecondaryColor = Color.fromARGB(255, 121, 120, 160);
@@ -11,6 +12,7 @@ const Color kThemeDivederColor = Color.fromARGB(255, 121, 120, 160);
 const Color kThemeEnableIconColor = Color.fromARGB(255, 33, 150, 243);
 const Color kThemeDisableIconColor = Color.fromARGB(255, 121, 120, 160);
 
+/// declare Application [themeData]
 ThemeData kThemeData = ThemeData(
   fontFamily: "Yekan",
   backgroundColor: kThemeBackgroundColor,

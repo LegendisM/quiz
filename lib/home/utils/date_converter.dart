@@ -1,6 +1,4 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
-
-//* Automatic Generated [G-J]
+/// get [years,month,day] Gregorian for convert to Jalali Date Time
 List gregorianToJalali(int gy, int gm, int gd) {
   var gdm, jy, jm, jd, gy2, days;
   gdm = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
@@ -30,7 +28,7 @@ List gregorianToJalali(int gy, int gm, int gd) {
   return [jy, jm, jd];
 }
 
-//* Automatic Generated [J-G]
+/// get [years,month,day] Jalali for convert to Gregorian Date Time
 List jalaliToGregorian(int jy, int jm, int jd) {
   var salA, gy, gm, gd, days;
   jy += 1595;
