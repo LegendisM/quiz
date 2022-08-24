@@ -32,6 +32,9 @@ class AboutState extends State<AboutScreen> {
             AboutCard(
               name: "حمیدرضا محمدی",
               grade: "برنامه نویس و توسعه دهنده",
+              phone: "09016493605",
+              code: "1080748644",
+              location: "اصفهان - نجف آباد",
               avatar: "hamidreza",
             ),
             SizedBox(
@@ -40,6 +43,9 @@ class AboutState extends State<AboutScreen> {
             AboutCard(
               name: "علی محمدی",
               grade: "توسعه تحقیقاتی",
+              phone: "09015080448",
+              code: "1080741267",
+              location: "اصفهان - نجف آباد",
               avatar: "ali",
             ),
           ],
