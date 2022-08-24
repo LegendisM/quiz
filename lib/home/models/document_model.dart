@@ -17,6 +17,7 @@ class DocumentModel {
 
   late String longitude;
   late String latitude;
+  late String direction;
 
   bool validator() {
     if (fullname == null ||
@@ -36,6 +37,7 @@ class DocumentModel {
       'location': {
         'longitude': longitude.toString(),
         'latitude': latitude.toString(),
+        'direction': direction.toString(),
       },
       'masters': config.masters,
       'multiplication': calculateMultiplication(limitedNumber!)
