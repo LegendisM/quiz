@@ -3,6 +3,7 @@ import 'package:quiz/home/constants/theme_form.dart' show kThemeFieldLabelColor;
 
 const Color kThemePrimaryColor = Color.fromARGB(255, 36, 38, 59);
 const Color kThemeBackgroundColor = Color.fromARGB(255, 55, 56, 86);
+const Color kThemeBackgroundSecondaryColor = Color.fromARGB(255, 121, 120, 160);
 const Color kThemeSecondaryColor = Color.fromARGB(175, 59, 63, 102);
 const Color kThemeFieldBorderColor = Color.fromARGB(255, 121, 120, 160);
 const Color kThemeFieldActiveBorderColor = Color.fromARGB(255, 122, 119, 187);
