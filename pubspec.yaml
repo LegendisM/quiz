@@ -48,7 +48,7 @@ dev_dependencies:
     sdk: flutter
 
 flutter_native_splash:
-  color: "#263238"
+  color: "#24263b"
   image: assets/images/logo.png
 
   # The "flutter_lints" package below contains a set of recommended lints to
