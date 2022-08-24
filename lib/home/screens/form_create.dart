@@ -53,7 +53,7 @@ class FormCreateState extends State<FormCreateScreen> {
       inSaveProgress = true;
     });
     String result = await widget.documentService.create();
-    widget.notificationService.showNotification(" توجه !", result);
+    widget.notificationService.showNotification(" اطلاع رسانی", result);
     Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         inSaveProgress = false;
