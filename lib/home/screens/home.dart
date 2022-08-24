@@ -9,6 +9,7 @@ import 'package:quiz/home/screens/about.dart';
 class Home extends StatefulWidget {
   Home({super.key});
 
+  /// initial core services
   final DocumentService documentService = DocumentService();
   final PermissionService permissionService = PermissionService();
   final NotificationService notificationService = NotificationService();
@@ -18,6 +19,7 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+  /// declare basic tab management variables
   late int currentTabIndex = 0;
   late List<Widget> tabs = [
     FormCreateScreen(

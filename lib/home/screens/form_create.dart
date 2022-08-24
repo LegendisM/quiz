@@ -15,6 +15,7 @@ class FormCreateScreen extends StatefulWidget {
       required this.permissionService,
       required this.notificationService});
 
+  /// receive and maintain [instance] of main [services]
   final DocumentService documentService;
   final PermissionService permissionService;
   final NotificationService notificationService;
@@ -24,9 +25,12 @@ class FormCreateScreen extends StatefulWidget {
 }
 
 class FormCreateState extends State<FormCreateScreen> {
+  /// declare variable for [refrence] to [read] [document]
   late DocumentModel currentDocument;
+  // declare controllers for for take permission to [get/set] value to textFields
   late TextEditingController dateFieldController;
   late TextEditingController limitedNumFieldController;
+  // declare variable for get document service in progress working
   late bool inSaveProgress = false;
 
   @override
@@ -37,6 +41,9 @@ class FormCreateState extends State<FormCreateScreen> {
     limitedNumFieldController = TextEditingController();
   }
 
+  /// called when user requested to pick directory path
+  /// 1. check needed [permissions] from permission Service
+  /// 2. save picked directory to [currentDocument] path
   void onFilePick() async {
     if (await widget.permissionService.onRequestFilePermission()) {
       String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
@@ -47,6 +54,9 @@ class FormCreateState extends State<FormCreateScreen> {
     }
   }
 
+  /// called when user requested to save [current Document] datas
+  /// 1. check needed [permissions] from permission Service
+  /// 2. call document Service for save this [document]
   void onFileSave() async {
     if (inSaveProgress) return;
     setState(() {
@@ -61,6 +71,8 @@ class FormCreateState extends State<FormCreateScreen> {
     });
   }
 
+  /// called when text field value changed for [fix/validate/edit] last value
+  /// this is function for set range of entered number from text fields
   void onLimitedNumberChanged(String value) {
     if (value.isNotEmpty) {
       int result = int.parse(value);

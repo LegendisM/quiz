@@ -14,6 +14,7 @@ class FormLoadScreen extends StatefulWidget {
       required this.permissionService,
       required this.notificationService});
 
+  /// receive and maintain [instance] of main [services]
   final DocumentService documentService;
   final PermissionService permissionService;
   final NotificationService notificationService;
@@ -23,7 +24,10 @@ class FormLoadScreen extends StatefulWidget {
 }
 
 class FormLoadState extends State<FormLoadScreen> {
+  /// declare variable for [refrence] to [write] [document]
   late DocumentModel currentDocument;
+
+  /// declare this variable for when picked file directory correctly and ready for show details of file
   late bool doucmentReady = false;
 
   @override
@@ -32,6 +36,9 @@ class FormLoadState extends State<FormLoadScreen> {
     currentDocument = widget.documentService.secondaryDocumentModel;
   }
 
+  /// called when user requested to pick directory path
+  /// 1. check needed [permissions] from permission Service
+  /// 2. save picked directory to [currentDocument] path
   void onFilePick() async {
     if (await widget.permissionService.onRequestFilePermission()) {
       String? selectedDirectory = await FilePicker.platform.getDirectoryPath();
