@@ -8,8 +8,8 @@ import 'package:quiz/home/services/notification_service.dart';
 import 'package:quiz/home/services/permission_service.dart';
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 
-class FormScreen extends StatefulWidget {
-  const FormScreen(
+class FormCreateScreen extends StatefulWidget {
+  const FormCreateScreen(
       {super.key,
       required this.documentService,
       required this.permissionService,
@@ -20,10 +20,10 @@ class FormScreen extends StatefulWidget {
   final NotificationService notificationService;
 
   @override
-  State<FormScreen> createState() => FormState();
+  State<FormCreateScreen> createState() => FormCreateState();
 }
 
-class FormState extends State<FormScreen> {
+class FormCreateState extends State<FormCreateScreen> {
   late DocumentModel currentDocument;
   late TextEditingController dateFieldController;
   late TextEditingController limitedNumFieldController;

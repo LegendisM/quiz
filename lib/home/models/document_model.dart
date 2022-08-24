@@ -14,10 +14,14 @@ class DocumentModel {
   late String? birthday = "";
   late String? filePath = "";
   late int? limitedNumber = 1;
+  late int age = 0;
 
   late String longitude;
   late String latitude;
   late String direction;
+
+  late String shamsiTime;
+  late String miladiTime;
 
   bool validator() {
     if (fullname == null ||
@@ -27,6 +31,16 @@ class DocumentModel {
       return false;
     }
     return true;
+  }
+
+  fromJson(content) {
+    fullname = content["fullname"];
+    age = int.parse(content["age"]);
+    shamsiTime = content["time"]["shamsi"];
+    miladiTime = content["time"]["miladi"];
+    longitude = content["location"]["longitude"];
+    latitude = content["location"]["latitude"];
+    direction = content["location"]["direction"];
   }
 
   getExport() {

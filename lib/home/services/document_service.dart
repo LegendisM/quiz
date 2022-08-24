@@ -5,12 +5,14 @@ import 'package:quiz/home/services/gyroscope_service.dart';
 
 class DocumentService {
   late DocumentModel currentDocumentModel;
+  late DocumentModel secondaryDocumentModel;
   StorageService storageService = StorageService();
   LocationService locationService = LocationService();
   GyroscopeService gyroscopeService = GyroscopeService();
 
   DocumentService() {
     currentDocumentModel = DocumentModel();
+    secondaryDocumentModel = DocumentModel();
   }
 
   Future<String> create() async {
@@ -28,5 +30,16 @@ class DocumentService {
     var fileContent = currentDocumentModel.getExport();
     await storageService.saveFile(currentDocumentModel.filePath!, fileContent);
     return "عمیلات با موفقیت انجام شد";
+  }
+
+  Future<String> load() async {
+    try {
+      String selectedPath = secondaryDocumentModel.filePath!;
+      var json = await storageService.loadFile(selectedPath);
+      secondaryDocumentModel.fromJson(json);
+      return "عمیلات با موفقیت انجام شد";
+    } catch (e) {
+      return "مشکلی پیش آمده است ، فایل یافت نشد . . .";
+    }
   }
 }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quiz/home/services/document_service.dart';
 import 'package:quiz/home/services/notification_service.dart';
 import 'package:quiz/home/services/permission_service.dart';
-import 'package:quiz/home/screens/form.dart';
-import 'package:quiz/home/screens/settings.dart';
+import 'package:quiz/home/screens/form_create.dart';
+import 'package:quiz/home/screens/form_load.dart';
 import 'package:quiz/home/screens/about.dart';
 
 class Home extends StatefulWidget {
@@ -20,12 +20,16 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   late int currentTabIndex = 0;
   late List<Widget> tabs = [
-    FormScreen(
+    FormCreateScreen(
       documentService: widget.documentService,
       permissionService: widget.permissionService,
       notificationService: widget.notificationService,
     ),
-    const SettingScreen(),
+    FormLoadScreen(
+      documentService: widget.documentService,
+      permissionService: widget.permissionService,
+      notificationService: widget.notificationService,
+    ),
     const AboutScreen()
   ];
 
@@ -53,7 +57,7 @@ class HomeState extends State<Home> {
               BottomNavigationBarItem(
                 label: "",
                 icon: Icon(
-                  Icons.settings,
+                  Icons.fireplace,
                 ),
               ),
               BottomNavigationBarItem(
